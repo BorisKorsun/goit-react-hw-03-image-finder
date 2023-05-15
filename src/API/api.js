@@ -17,7 +17,6 @@ class API {
     };
 
     getQueryImages(q) {
-        const a = 5;
     };
 
     get urlPath() {
