@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import API from "API";
 import ImageGalleryItem from './ImageGalleryItem';
+import { Gallery } from './ImageGallery.styled';
 
 const service = new API();
 
@@ -31,7 +32,7 @@ class ImageGallery extends Component {
         const { query } = this.props
 
         return (
-            <ul className="gallery">
+            <Gallery>
                 {gallery.map(({id, webformatURL}) => {
                     return (
                         <ImageGalleryItem 
@@ -41,7 +42,7 @@ class ImageGallery extends Component {
                         />
                     )
                 })}
-            </ul>
+            </Gallery>
         )
     }
 };
