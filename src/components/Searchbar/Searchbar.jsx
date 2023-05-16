@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field } from 'formik'
+import { SearchBarHeader, SearchFormButton, SearchForm, SearchFormLabel, SearchFormField } from './Searchbar.styled';
 
 const initialValues = {
     formQuery: '',
@@ -38,24 +39,23 @@ class Searchbar extends Component {
         initialValues={initialValues}
         onSubmit={this.onSubmit}
         >
-            <header className="searchbar">
-            <Form className="form">
-                <button type="submit" className="button">
-                <span className="button-label">Search</span>
-                </button>
+            <SearchBarHeader>
+            <SearchForm>
+                <SearchFormButton type="submit">
+                <SearchFormLabel>Search</SearchFormLabel>
+                </SearchFormButton>
 
-                <Field
+                <SearchFormField
                 onChange={this.onFieldChange}
                 value={formQuery}
                 name='formQuery'
-                className="input"
                 type="text"
                 autoComplete="off"
                 autoFocus
                 placeholder="Search images and photos"
                 />
-            </Form>
-            </header>
+            </SearchForm>
+            </SearchBarHeader>
         </Formik>
         )
     }
