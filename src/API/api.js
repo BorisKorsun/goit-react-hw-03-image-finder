@@ -8,23 +8,26 @@ class API {
         this.service = axios.create({
             baseURL: BASE_URL,
             params: {
-                api_key: API_KEY,
+                key: API_KEY,
+                image_type: 'photo',
+                orientation: 'horizontal',
+                page: '1',
+                per_page: '12',
             },
         })
-        this.options = {
-            urlPath: '',
-        }
     };
 
-    getQueryImages(q) {
+    async getQueryImages(q) {
+        this.params.q = q
+        return await this.service.get()
     };
 
-    get urlPath() {
-        return this.options.urlPath
+    get params() {
+        return this.service.defaults.params
     };
 
-    set urlPath(newPath) {
-        this.options.urlPath = newPath
+    set params(value) {
+        this.service.defaults.params = value
     };
 };
 
