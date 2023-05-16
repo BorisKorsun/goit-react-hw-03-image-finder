@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
 
-import API from "API";
-import Searchbar from 'components/Searchbar'
-
-const service = new API();
+import Searchbar from 'components/Searchbar';
+import ImageGallery from 'components/ImageGallery';
 
 class App extends Component {
+  state = {
+    formQuery: '',
+  };
+
+  onFormSubmit = ({ formQuery }) => {
+    this.setState({
+      formQuery,
+    })
+  }
+  
     render() {
-      service.getQueryImages('cat').then(({ data: { hits } }) => {
-        console.log(hits)
-      })
+      const { formQuery } = this.state
        return (
-        <Searchbar/>
+        <>
+        <Searchbar
+        onSubmit={this.onFormSubmit}
+        />
+        <ImageGallery
+        query={formQuery}
+        />
+        </>
        )
     }
   };

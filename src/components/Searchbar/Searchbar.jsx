@@ -1,13 +1,43 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field } from 'formik'
 
+const initialValues = {
+    formQuery: '',
+}
+
 class Searchbar extends Component {
-static initialValues = {
-    query: '',
-};
+    state = {
+        formQuery: '',
+    };
+
+    onFieldChange = (e) => {
+        const name = e.target['name']
+        const { value } = e.target
+
+        this.setState({
+            [name]: value,
+        });
+    };
+
+    onSubmit = () => {
+        this.props.onSubmit(this.state)
+        this.resetState();
+    };
+
+    resetState = () => {
+        this.setState({
+            formQuery: '',
+        });
+    };
+
     render() {
+        const { formQuery } = this.state
+
         return (
-        <Formik initialValues={this.initialValues}>
+        <Formik 
+        initialValues={initialValues}
+        onSubmit={this.onSubmit}
+        >
             <header className="searchbar">
             <Form className="form">
                 <button type="submit" className="button">
@@ -15,7 +45,9 @@ static initialValues = {
                 </button>
 
                 <Field
-                name='query'
+                onChange={this.onFieldChange}
+                value={formQuery}
+                name='formQuery'
                 className="input"
                 type="text"
                 autoComplete="off"
