@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field } from 'formik'
+import { Formik } from 'formik'
 import { SearchBarHeader, SearchFormButton, SearchForm, SearchFormLabel, SearchFormField } from './Searchbar.styled';
 
 const initialValues = {
