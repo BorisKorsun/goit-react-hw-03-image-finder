@@ -8,6 +8,7 @@ class App extends Component {
   state = {
     formQuery: '',
     page: 1,
+    status: '',
   };
 
   onFormSubmit = ({ formQuery }) => {

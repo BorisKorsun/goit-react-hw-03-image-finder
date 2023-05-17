@@ -14,7 +14,7 @@ class ImageGallery extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         const prevQuery  = prevProps.query;
-        const query = this.props;
+        const query = this.props.query;
 
         const prevPage = prevProps.page;
         const page = this.props.page;
@@ -27,9 +27,15 @@ class ImageGallery extends Component {
             });
         };
 
-        if (page  >= prevPage) {
-            return console.log('сторінка збільшилась')
-        }
+        if (page  > prevPage) {
+            return service.getPageImages(page).then(({data: { hits }}) => {
+                return this.setState(({ gallery }) => {
+                    return {
+                        gallery: [...gallery, ...hits]
+                    }
+                });
+            });
+        };
     };
 
     render() {

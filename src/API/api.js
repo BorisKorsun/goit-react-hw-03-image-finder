@@ -8,6 +8,7 @@ class API {
         this.service = axios.create({
             baseURL: BASE_URL,
             params: {
+                q: '',
                 key: API_KEY,
                 image_type: 'photo',
                 orientation: 'horizontal',
