@@ -5,3 +5,5 @@ const GalleryPendingView = () => {
         <Loader/>
     )
 };
+
+export default GalleryPendingView;

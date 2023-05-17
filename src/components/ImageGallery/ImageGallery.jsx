@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 
 import API from "API";
-import ImageGalleryItem from './ImageGalleryItem';
-import { Gallery } from './ImageGallery.styled';
-import Button from 'components/Button';
-import Modal from 'components/Modal';
+import GalleryPendingView from 'components/StatusView/GalleryPendingView';
+import GalleryResolvedView from 'components/StatusView/GalleryResolvedView';
+import GalleryRejectedView from 'components/StatusView/GalleryRejectedView';
 
 const service = new API();
-
-// "pending"
-// "resolved"
 
 class ImageGallery extends Component {
     state = {
@@ -78,8 +74,8 @@ class ImageGallery extends Component {
             return {
                 showModal: !showModal,
             };
-        })
-    }
+        });
+    };
 
     handleBtnClick = () => {
         this.setState(({ page }) => {
@@ -106,47 +102,32 @@ class ImageGallery extends Component {
     };
 
     render() {
-        const { gallery, status, showModal, modalCard, error } = this.state;
+        const { status, error } = this.state;
         const { query } = this.props
-
-        if (status === "pending") {
-            return (
-                <Loader/>
-            )
-        }
-
-        if (status === "rejected") {
-            return (
-                <p>{error.message}</p>
-            )
-        }
 
         if (status === "resolved") {
             return (
-                <>
-                <Gallery>
-                    {gallery.map(({ id, webformatURL }) => {
-                        return (
-                            <ImageGalleryItem
-                            key={id}
-                            url={webformatURL}
-                            query={query}
-                            id={id}
-                            onClick={this.handleCardClick}
-                            />
-                        )
-                    })}
-                </Gallery>
-                {gallery.length > 0 && (
-                    <Button onBtnClick={this.handleBtnClick}/>   
-                )}   
-                {showModal && 
-                <Modal 
-                tags={modalCard.tags} 
-                url={modalCard.largeImageURL}
-                onClose={this.toggleModal}
-                />} 
-                </>
+            <GalleryResolvedView
+            state={this.state}
+            query={query}
+            onCardClick={this.handleCardClick}
+            onBtnClick={this.handleBtnClick}
+            onModalClose={this.toggleModal}
+            />
+            )
+        };
+
+        if (status === "pending") {
+            return (
+                <GalleryPendingView/>
+            )
+        };
+
+        if (status === "rejected") {
+            return (
+                <GalleryRejectedView
+                error={error}
+                />
             )
         }
     }
