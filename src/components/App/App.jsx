@@ -2,13 +2,10 @@ import React, { Component } from 'react';
 
 import Searchbar from 'components/Searchbar';
 import ImageGallery from 'components/ImageGallery';
-import Button from 'components/Button';
 
 class App extends Component {
   state = {
     formQuery: '',
-    page: 1,
-    status: '',
   };
 
   onFormSubmit = ({ formQuery }) => {
@@ -16,17 +13,9 @@ class App extends Component {
       formQuery,
     })
   }
-
-  onBtnClick = () => {
-    this.setState(({ page }) => {
-      return {
-        page: page + 1
-      }
-    })
-  };
   
     render() {
-      const { formQuery, btnClicked, page } = this.state
+      const { formQuery } = this.state
        return (
         <>
         <Searchbar
@@ -34,10 +23,7 @@ class App extends Component {
         />
         <ImageGallery
         query={formQuery}
-        btnClicked={btnClicked}
-        page={page}
         />
-        <Button onBtnClick={this.onBtnClick}/>
         </>
        )
     }

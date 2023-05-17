@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field } from 'formik'
+import { Formik } from 'formik'
+import { AiOutlineSearch } from 'react-icons/ai';
 import { SearchBarHeader, SearchFormButton, SearchForm, SearchFormLabel, SearchFormField } from './Searchbar.styled';
 
 const initialValues = {
@@ -45,7 +46,7 @@ class Searchbar extends Component {
             <SearchBarHeader>
             <SearchForm>
                 <SearchFormButton type="submit">
-                <SearchFormLabel>Search</SearchFormLabel>
+                <AiOutlineSearch size={30}/>
                 </SearchFormButton>
 
                 <SearchFormField
