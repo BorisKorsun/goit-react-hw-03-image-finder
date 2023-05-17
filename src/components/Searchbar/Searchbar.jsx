@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Formik } from 'formik'
 import { AiOutlineSearch } from 'react-icons/ai';
-import { SearchBarHeader, SearchFormButton, SearchForm, SearchFormLabel, SearchFormField } from './Searchbar.styled';
+import { SearchBarHeader, SearchFormButton, SearchForm, SearchFormField } from './Searchbar.styled';
 
 const initialValues = {
     formQuery: '',
