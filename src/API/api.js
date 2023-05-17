@@ -11,8 +11,8 @@ class API {
                 key: API_KEY,
                 image_type: 'photo',
                 orientation: 'horizontal',
-                page: '1',
-                per_page: '12',
+                page: 1,
+                per_page: 12,
             },
         })
     };
@@ -21,6 +21,11 @@ class API {
         this.params.q = q
         return await this.service.get()
     };
+
+    async getPageImages(page) {
+        this.params.page = page;
+        return await this.service.get();
+    }
 
     get params() {
         return this.service.defaults.params

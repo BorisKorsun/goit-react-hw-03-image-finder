@@ -13,18 +13,23 @@ class ImageGallery extends Component {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        const prevQuery  = prevProps['query'];
-        const query = this.props['query'];
+        const prevQuery  = prevProps.query;
+        const query = this.props;
+
+        const prevPage = prevProps.page;
+        const page = this.props.page;
 
         if (prevQuery !== query) {
-            console.log('query поменялось');
             return service.getQueryImages(query).then(({ data: { hits } }) => {
                 this.setState({
                     gallery: [...hits]
                 })
             });
+        };
+
+        if (page  >= prevPage) {
+            return console.log('сторінка збільшилась')
         }
-        console.log('query все та же')
     };
 
     render() {
