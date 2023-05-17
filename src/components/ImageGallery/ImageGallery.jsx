@@ -98,7 +98,6 @@ class ImageGallery extends Component {
                     showModal: true,
                 })
             }
-            return card;
         })
     };
 
