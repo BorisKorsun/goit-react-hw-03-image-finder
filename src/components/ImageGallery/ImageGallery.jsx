@@ -90,14 +90,15 @@ class ImageGallery extends Component {
         const IMGid = Number(e.target.dataset.id);
 
 
-        gallery.find((card) => {
+        gallery.map((card) => {
             const { id } = card;
             if (id === IMGid) {
                 this.setState({
                     modalCard: card,
                     showModal: true,
                 })
-            }
+            };
+            return card
         })
     };
 
