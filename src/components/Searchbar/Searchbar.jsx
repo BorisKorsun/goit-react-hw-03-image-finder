@@ -21,6 +21,9 @@ class Searchbar extends Component {
     };
 
     onSubmit = () => {
+        if (this.state.formQuery.trim() === '') {
+            return;
+        }
         this.props.onSubmit(this.state)
         this.resetState();
     };
